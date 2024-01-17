@@ -5,8 +5,69 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: null,
+    return Scaffold(
+      body: SafeArea(
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Transform.rotate(
+                  angle: -0.2,
+                  child: const Column(
+                    children: [
+                      Text(
+                        "Esperar",
+                        style: TextStyle(fontStyle: FontStyle.italic),
+                      ),
+                      Text(
+                        "CONDUCTORES",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, color: Colors.black),
+                      ),
+                    ],
+                  ),
+                ),
+                const Align(
+                  alignment: Alignment.centerLeft,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Podras realizar",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 20),
+                      ),
+                      SizedBox(height: 20),
+                      Text(
+                        "Ver mapas con companeros en el camino\nEstar enterado de las noticias de tu empresa\nVer tu programacion de rutas",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+                ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 200),
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 45,
+                    decoration: BoxDecoration(
+                        border: Border.all(color: Colors.black),
+                        borderRadius: BorderRadius.circular(20)),
+                    child: const Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                      child: Text("Siguiente"),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
