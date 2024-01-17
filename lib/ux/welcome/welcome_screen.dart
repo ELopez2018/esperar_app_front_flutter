@@ -1,3 +1,4 @@
+import 'package:esperar_app_front_flutter/core/const/navigate.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -36,13 +37,13 @@ class WelcomeScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Podras realizar",
+                        "Podrás realizar",
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 20),
                       ),
                       SizedBox(height: 20),
                       Text(
-                        "Ver mapas con companeros en el camino\nEstar enterado de las noticias de tu empresa\nVer tu programacion de rutas",
+                        "Ver mapas con compañeros en el camino\nEstar enterado de las noticias de tu empresa\nVer tu programación de rutas",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ],
@@ -50,16 +51,19 @@ class WelcomeScreen extends StatelessWidget {
                 ),
                 ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 200),
-                  child: Container(
-                    alignment: Alignment.center,
-                    height: 45,
-                    decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black),
-                        borderRadius: BorderRadius.circular(20)),
-                    child: const Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                      child: Text("Siguiente"),
+                  child: GestureDetector(
+                    onTap: () => push(context, 'login', null),
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: 45,
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.black),
+                          borderRadius: BorderRadius.circular(20)),
+                      child: const Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 5),
+                        child: Text("Siguiente"),
+                      ),
                     ),
                   ),
                 )

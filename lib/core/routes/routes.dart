@@ -4,4 +4,6 @@ import 'package:flutter/material.dart';
 routes(BuildContext context) => {
   'splash': (context) => const SplashScreen(),
   'welcome': (context) => const WelcomeScreen(),
+  'login': (context) => const LoginScreen(),
+  'select-driver': (context) => const SelectDriverScreen(),
 };
