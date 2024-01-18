@@ -11,3 +11,9 @@ pushReplacement(BuildContext context, String route, dynamic args) async {
 pop(BuildContext context, bool? state) async {
   return  Navigator.of(context).pop(state);
 }
+popUntil(BuildContext context, String route) async {
+  return Navigator.of(context).popUntil(ModalRoute.withName(route));
+}
+pushNamedAndRemoveUntil(BuildContext context, String route) async {
+  return Navigator.of(context).pushNamedAndRemoveUntil(route, (route) => false);
+}

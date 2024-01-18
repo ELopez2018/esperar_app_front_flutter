@@ -52,7 +52,7 @@ class WelcomeScreen extends StatelessWidget {
                 ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 200),
                   child: GestureDetector(
-                    onTap: () => push(context, 'login', null),
+                    onTap: () => pushReplacement(context, 'login', null),
                     child: Container(
                       alignment: Alignment.center,
                       height: 45,

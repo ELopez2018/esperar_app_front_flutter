@@ -9,6 +9,7 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     const textStyle = TextStyle(fontWeight: FontWeight.bold);
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -17,14 +18,17 @@ class LoginScreen extends StatelessWidget {
           child: SizedBox(
             height: size.height - MediaQuery.of(context).padding.top,
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Align(
                     alignment: Alignment.topLeft,
-                    child: Text("INICIAR SESIÓN" ,style: TextStyle(fontWeight: FontWeight.w500, fontSize: 22)),
+                    child: Text("INICIAR SESIÓN",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500, fontSize: 22)),
                   ),
                   Column(
                     children: [
@@ -52,10 +56,11 @@ class LoginScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 30),
                       ConstrainedBox(
-                        constraints:
-                            const BoxConstraints(minWidth: 200, maxWidth: 200),
+                        constraints: const BoxConstraints(
+                            minWidth: 200, maxWidth: 200),
                         child: GestureDetector(
-                          onTap: () => pushReplacement(context,'select-driver', null),
+                          onTap: () =>
+                              pushReplacement(context, 'select-driver', null),
                           child: Container(
                             alignment: Alignment.center,
                             height: 45,
@@ -70,11 +75,14 @@ class LoginScreen extends StatelessWidget {
                       const Text("Olvide mi contraseña", style: textStyle),
                     ],
                   ),
-                   Row(
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      GestureDetector(child: const Text("POLÍTICA DE PRIVACIDAD", style: textStyle)),
-                      GestureDetector(child: const Text("SOPORTE", style: textStyle)),
+                      GestureDetector(
+                          child: const Text("POLÍTICA DE PRIVACIDAD",
+                              style: textStyle)),
+                      GestureDetector(
+                          child: const Text("SOPORTE", style: textStyle)),
                     ],
                   )
                 ],
