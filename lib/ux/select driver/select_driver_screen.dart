@@ -156,16 +156,19 @@ class SelectDriverScreen extends StatelessWidget {
               const SizedBox(height: 35),
               Align(
                 alignment: Alignment.centerRight,
-                child: Container(
-                  alignment: Alignment.center,
-                  height: 40,
-                  width: 100,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black),
-                  ),
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: Text("Siguiente"),
+                child: GestureDetector(
+                  onTap: () => pushReplacement(context, 'layout', null),
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 40,
+                    width: 100,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.black),
+                    ),
+                    child: const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: Text("Siguiente"),
+                    ),
                   ),
                 ),
               ),

@@ -4,10 +4,10 @@ class InputCustom extends StatelessWidget {
   const InputCustom({
     super.key,
     required this.label,
-    required this.image,
+    this.image,
   });
   final String label;
-  final String image;
+  final String? image;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,10 @@ class InputCustom extends StatelessWidget {
           decoration: BoxDecoration(border: Border.all()),
           child: TextFormField(
             decoration: InputDecoration(
-                prefixIcon: Image.asset(image), border: InputBorder.none),
+              prefixIcon: image != null ? Image.asset(image!) : null,
+              border: InputBorder.none,
+              contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10)
+            ),
             cursorColor: Colors.grey,
           ),
         ),

@@ -55,21 +55,9 @@ class LoginScreen extends StatelessWidget {
                         ],
                       ),
                       const SizedBox(height: 30),
-                      ConstrainedBox(
-                        constraints: const BoxConstraints(
-                            minWidth: 200, maxWidth: 200),
-                        child: GestureDetector(
-                          onTap: () =>
-                              pushReplacement(context, 'select-driver', null),
-                          child: Container(
-                            alignment: Alignment.center,
-                            height: 45,
-                            decoration: BoxDecoration(
-                              border: Border.all(),
-                            ),
-                            child: const Text("INICIAR SESIÓN"),
-                          ),
-                        ),
+                      ButtonCustom(
+                        text: "INICIAR SESIÓN",
+                        onTap: () => pushReplacement(context, 'select-driver', null),
                       ),
                       const SizedBox(height: 20),
                       const Text("Olvide mi contraseña", style: textStyle),

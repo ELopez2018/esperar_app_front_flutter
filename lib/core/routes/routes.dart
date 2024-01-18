@@ -6,4 +6,6 @@ routes(BuildContext context) => {
   'welcome': (context) => const WelcomeScreen(),
   'login': (context) => const LoginScreen(),
   'select-driver': (context) => const SelectDriverScreen(),
+  'layout': (context) => LayoutScreen.init(context),
+  'new-route': (context) => const CreateRouteScreen()
 };
