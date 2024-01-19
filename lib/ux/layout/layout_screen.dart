@@ -1,5 +1,5 @@
 import 'package:esperar_app_front_flutter/ux/layout/layout_provider.dart';
-import 'package:esperar_app_front_flutter/ux/routes/routes_screen.dart';
+import 'package:esperar_app_front_flutter/ux/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,7 +16,7 @@ class LayoutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = Provider.of<LayoutProvider>(context);
-    List<Widget> pages = [ const RoutesScreen()];
+    List<Widget> pages = const [  RoutesScreen(),  NewsScreen(),  MapScreen(), ChatScreen(), ProfileScreen()];
     return Scaffold(
       body: SafeArea(
         child: Stack(

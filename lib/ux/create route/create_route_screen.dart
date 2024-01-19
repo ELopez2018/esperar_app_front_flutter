@@ -1,4 +1,3 @@
-import 'package:esperar_app_front_flutter/core/const/navigate.dart';
 import 'package:esperar_app_front_flutter/ux/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -15,12 +14,9 @@ class CreateRouteScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              AppBarCustom(
+              const AppBarCustom(
                   label: 'RUTAS',
-                  action: GestureDetector(
-                    onTap: () => pop(context, null),
-                    child: const Icon(Icons.arrow_back),
-                  )),
+                  action: ButtonBackScreen()),
               const Text('Crear ruta:'),
               const SizedBox(height: 20),
               const InputCustom(label: 'Desde'),

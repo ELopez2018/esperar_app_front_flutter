@@ -3,18 +3,20 @@ import 'package:flutter/material.dart';
 
 class ButtonCustom extends StatelessWidget {
   const ButtonCustom({
-    super.key, required this.text, required this.onTap, this.width,
+    super.key, required this.text, required this.onTap, this.width, this.background, this.color,
   });
 
   final String text;
   final GestureTapCallback onTap;
   final double? width;
+  final Color? background;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
       constraints:  BoxConstraints(
-          minWidth: 200, maxWidth: width ?? 200),
+          minWidth: 120, maxWidth: width ?? 200),
       child: GestureDetector(
         onTap: onTap,
         child: Container(
@@ -22,8 +24,9 @@ class ButtonCustom extends StatelessWidget {
           height: 45,
           decoration: BoxDecoration(
             border: Border.all(),
+            color: background
           ),
-          child:  Text(text, style: const TextStyle(fontWeight: FontWeight.w600),),
+          child:  Text(text, style:  TextStyle(fontWeight: FontWeight.w600, color: color),),
         ),
       ),
     );

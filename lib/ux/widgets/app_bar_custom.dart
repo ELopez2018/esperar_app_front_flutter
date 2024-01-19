@@ -13,7 +13,7 @@ class AppBarCustom extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(bottom: 20),
+      margin: const EdgeInsets.only(bottom: 10),
       height: 60,
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10),
