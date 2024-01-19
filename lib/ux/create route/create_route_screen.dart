@@ -15,7 +15,10 @@ class CreateRouteScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const AppBarCustom(
-                  label: 'RUTAS',
+                  title:             Text(
+              'RUTAS',
+              style: const TextStyle(fontWeight: FontWeight.w500),
+            ),
                   action: ButtonBackScreen()),
               const Text('Crear ruta:'),
               const SizedBox(height: 20),

@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 class AppBarCustom extends StatelessWidget {
   const AppBarCustom({
     super.key,
-    required this.label,
+    required this.title,
     this.action,
   });
 
-  final String label;
+  final Widget title;
   final Widget? action;
 
   @override
@@ -23,10 +23,7 @@ class AppBarCustom extends StatelessWidget {
           children: [
             Align(
                 alignment: Alignment.center, child: action ?? const SizedBox()),
-            Text(
-              label,
-              style: const TextStyle(fontWeight: FontWeight.w500),
-            ),
+                title,
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

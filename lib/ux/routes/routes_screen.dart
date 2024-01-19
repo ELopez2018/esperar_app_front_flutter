@@ -28,7 +28,10 @@ class RoutesScreen extends StatelessWidget {
               )
             ],
           ),
-          label: 'RUTAS',
+          title: Text(
+            'RUTAS',
+            style: const TextStyle(fontWeight: FontWeight.w500),
+          ),
         ),
         Expanded(
           child: Column(

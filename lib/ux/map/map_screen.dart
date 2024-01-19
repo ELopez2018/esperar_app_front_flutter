@@ -10,7 +10,10 @@ class MapScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const AppBarCustom(label: 'MAPA'),
+        const AppBarCustom(title:             Text(
+              'MAPA',
+              style: const TextStyle(fontWeight: FontWeight.w500),
+            ),),
         
         Expanded(
           child: Stack(
