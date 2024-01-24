@@ -12,7 +12,7 @@ class NewsScreen extends StatelessWidget {
         children: [
           const AppBarCustom(title:             Text(
               'NOTICIAS',
-              style: const TextStyle(fontWeight: FontWeight.w500),
+              style:  TextStyle(fontWeight: FontWeight.w500),
             ),),
           Padding(
             padding: const EdgeInsets.only(top: 20, bottom: 40),

@@ -17,7 +17,7 @@ class CreateRouteScreen extends StatelessWidget {
               const AppBarCustom(
                   title:             Text(
               'RUTAS',
-              style: const TextStyle(fontWeight: FontWeight.w500),
+              style:  TextStyle(fontWeight: FontWeight.w500),
             ),
                   action: ButtonBackScreen()),
               const Text('Crear ruta:'),

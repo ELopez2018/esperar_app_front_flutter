@@ -2,6 +2,7 @@ import 'package:esperar_app_front_flutter/ux/map/widgets/indicator_route.dart';
 import 'package:esperar_app_front_flutter/ux/map/widgets/vehicle_indicator_route.dart';
 import 'package:esperar_app_front_flutter/ux/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapScreen extends StatelessWidget {
   const MapScreen({Key? key}) : super(key: key);
@@ -12,19 +13,14 @@ class MapScreen extends StatelessWidget {
       children: [
         const AppBarCustom(title:             Text(
               'MAPA',
-              style: const TextStyle(fontWeight: FontWeight.w500),
+              style:  TextStyle(fontWeight: FontWeight.w500),
             ),),
         
         Expanded(
           child: Stack(
             children: [
               const Positioned.fill(
-                child: Center(
-                  child:  Text(
-                    'Mapa',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                ),
+                child: GoogleMap(initialCameraPosition: CameraPosition(target: LatLng(4.146347, -73.641619),zoom: 13.7))
               ),
               Positioned.fill(
                 child: Stack(

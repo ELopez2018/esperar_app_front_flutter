@@ -21,9 +21,9 @@ class LayoutScreen extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
-            Positioned.fill(child: pages.elementAt(bloc.getPage()) )
+            Positioned.fill(child: pages.elementAt(bloc.getPage()))
           ],
-        ),
+                ),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const [

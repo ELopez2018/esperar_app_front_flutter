@@ -9,3 +9,4 @@ export 'package:esperar_app_front_flutter/ux/map/map_screen.dart';
 export 'package:esperar_app_front_flutter/ux/chat/chat_screen.dart';
 export 'package:esperar_app_front_flutter/ux/news/news_screen.dart';
 export 'package:esperar_app_front_flutter/ux/profile/profile_screen.dart';
+export 'package:esperar_app_front_flutter/ux/edit%20profile/edit_profile.dart';

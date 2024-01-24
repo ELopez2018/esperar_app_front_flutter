@@ -30,7 +30,7 @@ class RoutesScreen extends StatelessWidget {
           ),
           title: Text(
             'RUTAS',
-            style: const TextStyle(fontWeight: FontWeight.w500),
+            style:  TextStyle(fontWeight: FontWeight.w500),
           ),
         ),
         Expanded(

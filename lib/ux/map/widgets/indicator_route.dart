@@ -18,6 +18,7 @@ class IndicatorRoute extends StatelessWidget {
           border: Border.all(
             color: Colors.black,
           ),
+          color: Colors.white,
           borderRadius: BorderRadius.circular(12)),
       child: Row(
         children: [

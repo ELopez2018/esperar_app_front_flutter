@@ -7,5 +7,6 @@ routes(BuildContext context) => {
   'login': (context) => const LoginScreen(),
   'select-driver': (context) => const SelectDriverScreen(),
   'layout': (context) => LayoutScreen.init(context),
-  'new-route': (context) => const CreateRouteScreen()
+  'new-route': (context) => const CreateRouteScreen(),
+  'edit-profile': (context) => const EditProfile(),
 };
