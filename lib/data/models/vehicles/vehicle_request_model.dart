@@ -1,6 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
 
-
 part 'vehicle_request_model.g.dart';
 
 @JsonSerializable()
@@ -28,7 +27,8 @@ class VehicleRequestModel {
   final int occupancy;
   final int ownerId;
   final int driverId;
-    factory VehicleRequestModel.fromJson(Map<String, dynamic> json) =>
+
+  factory VehicleRequestModel.fromJson(Map<String, dynamic> json) =>
       _$VehicleRequestModelFromJson(json);
   Map<String, dynamic> toJson() => _$VehicleRequestModelToJson(this);
 }
