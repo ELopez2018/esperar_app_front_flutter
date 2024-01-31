@@ -7,10 +7,12 @@ class AuthRequestModel {
   AuthRequestModel({
     required this.username,
     required this.password,
+    this.confirmPassword,
   });
 
   final String username;
   final String password;
+  final String? confirmPassword;
   
   factory AuthRequestModel.fromJson(Map<String, dynamic> json) =>
       _$AuthRequestModelFromJson(json);

@@ -15,14 +15,14 @@ class RouteModel {
       required this.deletedAt,
       required this.coordinates});
 
-  final int id;
-  final String name;
-  final String from;
-  final String to;
-  final DateTime createdAt;
+  final int? id;
+  final String? name;
+  final String? from;
+  final String? to;
+  final DateTime? createdAt;
   final DateTime? updatedAt;
-  final DateTime deletedAt;
-  final List<CoordinatesModel> coordinates;
+  final DateTime? deletedAt;
+  final List<CoordinatesModel?>? coordinates;
 
   factory RouteModel.fromJson(Map<String, dynamic> json) =>
       _$RouteModelFromJson(json);

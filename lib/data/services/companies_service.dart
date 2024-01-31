@@ -4,14 +4,18 @@ import 'package:esperar_app_front_flutter/data/models/companies/companies_respon
 import 'package:esperar_app_front_flutter/data/models/companies/company_model.dart';
 import 'package:esperar_app_front_flutter/data/models/companies/company_request_model.dart';
 
-class CompaniesService{
+class CompanyService {
   late final Dio _dio = Dio(BaseOptions(baseUrl: apiHost));
 
-
-
- Future<CompanyModel?> createCompany(CompanyRequestModel company) async {
+  Future<CompanyModel?> createCompany(
+      String accessToken, CompanyRequestModel company) async {
     try {
-      final response = await _dio.post('/companies', data: company);
+      final response = await _dio.post('/companies',
+          options: Options(headers: {
+            'Authorization': 'Bearer $accessToken',
+            'Content-Type': 'application/json',
+          }),
+          data: company.toJson());
       if (response.statusCode == 200) {
         final dynamic data = response.data;
         return CompanyModel.fromJson(data);
@@ -78,10 +82,10 @@ class CompaniesService{
             'Authorization': 'Bearer $accessToken',
             'Content-Type': 'application/json',
           }));
-          if(response.statusCode == 204){
-            return true;
-          }
-          return false;
+      if (response.statusCode == 204) {
+        return true;
+      }
+      return false;
     } on DioException catch (_) {
       print(_);
     }

@@ -17,16 +17,16 @@ class PageableModel {
     required this.empty,
   });
 
-  final PageableInformationModel pageable;
-  final int totalElements;
-  final int totalPages;
-  final bool last;
-  final int size;
-  final int number;
-  final SortPageableModel sort;
-  final bool first;
-  final int numberOfElements;
-  final bool empty;
+  final PageableInformationModel? pageable;
+  final int? totalElements;
+  final int? totalPages;
+  final bool? last;
+  final int? size;
+  final int? number;
+  final SortPageableModel? sort;
+  final bool? first;
+  final int? numberOfElements;
+  final bool? empty;
 
   factory PageableModel.fromJson(Map<String, dynamic> json) =>
       _$PageableModelFromJson(json);

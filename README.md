@@ -14,3 +14,15 @@ Este proyecto se desarrolla utilizando Flutter en la versión **<span style="col
 flutter --version
 
 fvm --version
+```
+
+## Creación de Modelos
+
+Los modelos en este proyecto son generados utilizando clases generadoras. Para generar los modelos, ejecuta el siguiente comando en la terminal:
+
+```bash
+dart run build_runner build --delete-conflicting-outputs
+```
+Este comando utiliza build_runner para generar los archivos necesarios basados en las clases definidas en tu proyecto. Asegúrate de ejecutar este comando después de realizar cambios en las clases de modelo para mantener los archivos generados actualizados.
+
+Nota: Asegúrate de que tu terminal esté en la raíz del proyecto antes de ejecutar el comando.

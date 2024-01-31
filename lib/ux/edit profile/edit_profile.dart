@@ -1,8 +1,25 @@
+import 'package:esperar_app_front_flutter/core/const/navigate.dart';
+import 'package:esperar_app_front_flutter/data/services/user_service.dart';
+import 'package:esperar_app_front_flutter/data/services/vehicle_service.dart';
+import 'package:esperar_app_front_flutter/domain/repository/local_storage_interface.dart';
+import 'package:esperar_app_front_flutter/ux/edit%20profile/edit_profile_provider.dart';
 import 'package:esperar_app_front_flutter/ux/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class EditProfile extends StatelessWidget {
-  const EditProfile({Key? key}) : super(key: key);
+  const EditProfile._();
+
+  static Widget init(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (context) => EditProfileProvider(
+          localStorageInterface:
+              Provider.of<LocalStorageInterface>(context, listen: false),
+          userService: Provider.of<UserService>(context, listen: false))
+        ..init(),
+      builder: (context, child) => const EditProfile._(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +34,7 @@ class EditProfile extends StatelessWidget {
             ));
 
     String driverState = items[0].value!;
+    final bloc = Provider.of<EditProfileProvider>(context);
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -35,54 +53,45 @@ class EditProfile extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      SizedBox(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text('EMPRESA'),
-                            const SizedBox(height: 10),
-                            DropdownButtonFormField<String>(
-                              items: items,
-                              onChanged: (String? value) {
-                                driverState = value!;
-                              },
-                              value: driverState,
-                              decoration: const InputDecoration(
-                                border: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                    color: Colors.black,
-                                  ),
-                                ),
-                                contentPadding:
-                                    EdgeInsets.symmetric(horizontal: 10),
-                                focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.black),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
                       const SizedBox(height: 10),
-                      const InputCustom(
-                        label: 'PLACA',
-                        image: "assets/icons/placa.png",
+                      InputCustom(
+                        label: 'Primer Nombre',
+                        icon: Icons.person_2_rounded,
+                        controller: bloc.firstName,
+                        enable: false,
                       ),
-                      const InputCustom(label: 'NUMERO DE VEHÍCULO'),
-                      const InputCustom(label: 'AÑO DEL VEHÍCULO'),
-                      const InputCustom(label: 'MARCAR DEL VEHÍCULO'),
-                      const InputCustom(label: 'SERIE'),
-                      const InputCustom(label: 'NUMERO CELULAR'),
-                      const InputCustom(
-                        label: 'CLAVE',
-                        image: "assets/icons/pin.png",
+                      InputCustom(
+                        label: 'Segundo Nombre',
+                        icon: Icons.person_2_rounded,
+                        controller: bloc.secondName,
+                        enable: false,
+                      ),
+                      InputCustom(
+                        label: 'Apellidos',
+                        icon: Icons.person_2_rounded,
+                        controller: bloc.lastName,
+                        enable: false,
+                      ),
+                      InputCustom(
+                        label: 'Correo',
+                        icon: Icons.email,
+                        controller: bloc.email,
+                      ),
+                      InputCustom(
+                        label: 'Telefono',
+                        icon: Icons.phone,
+                        controller: bloc.phone,
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 20),
                         child: ButtonCustom(
                           text: 'ACTUALIZAR',
-                          onTap: () {},
+                          onTap: () async {
+                            final result = await bloc.updateUser();
+                            if(result != null && result){
+                              pop(context, null);
+                            }
+                          },
                           background: Colors.green,
                           color: Colors.white,
                         ),

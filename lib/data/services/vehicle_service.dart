@@ -4,13 +4,18 @@ import 'package:esperar_app_front_flutter/data/models/vehicles/vehicle_model.dar
 import 'package:esperar_app_front_flutter/data/models/vehicles/vehicle_request_model.dart';
 import 'package:esperar_app_front_flutter/data/models/vehicles/vehicles_response_model.dart';
 
-class VehicleService{
-    late final Dio _dio = Dio(BaseOptions(baseUrl: apiHost));
+class VehicleService {
+  late final Dio _dio = Dio(BaseOptions(baseUrl: apiHost));
 
-
- Future<VehicleModel?> createVehicle(VehicleRequestModel vehicle ) async {
+  Future<VehicleModel?> createVehicle(
+      String accessToken, VehicleRequestModel vehicle) async {
     try {
-      final response = await _dio.post('/vehicles/create', data: vehicle);
+      final response = await _dio.post('/vehicles/create',
+          options: Options(headers: {
+            'Authorization': 'Bearer $accessToken',
+            'Content-Type': 'application/json',
+          }),
+          data: vehicle);
       if (response.statusCode == 200) {
         final dynamic data = response.data;
         return VehicleModel.fromJson(data);
@@ -29,7 +34,7 @@ class VehicleService{
           }));
       if (response.statusCode == 200) {
         final dynamic data = response.data;
-        return  VehiclesResponseModel.fromJson(data);
+        return VehiclesResponseModel.fromJson(data);
       }
     } on DioException catch (_) {
       print(_);
@@ -53,10 +58,10 @@ class VehicleService{
   }
 
   Future<VehicleModel?> updateVehicle(
-      int id, VehicleRequestModel user, String accessToken) async {
+      int id, VehicleRequestModel vehicle, String accessToken) async {
     try {
       final response = await _dio.put('/vehicles/$id',
-          data: user,
+          data: vehicle.toJson(),
           options: Options(headers: {
             'Authorization': 'Bearer $accessToken',
             'Content-Type': 'application/json',
@@ -77,10 +82,23 @@ class VehicleService{
             'Authorization': 'Bearer $accessToken',
             'Content-Type': 'application/json',
           }));
-          if(response.statusCode == 204){
-            return true;
-          }
-          return false;
+      if (response.statusCode == 204) {
+        return true;
+      }
+      return false;
+    } on DioException catch (_) {
+      print(_);
+    }
+  }
+
+  Future assignDriverToVehicle(
+      String accessToken, int vehicleId, int driverId) async {
+    try {
+      await _dio.get('/vehicles/assignDriver/$vehicleId/$driverId',
+          options: Options(headers: {
+            'Authorization': 'Bearer $accessToken',
+            'Content-Type': 'application/json',
+          }));
     } on DioException catch (_) {
       print(_);
     }

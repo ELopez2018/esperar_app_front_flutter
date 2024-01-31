@@ -9,7 +9,11 @@ class AuthService {
 
   Future<AuthResponseModel?> login(AuthRequestModel auth) async {
     try {
-      final response = await _dio.post('/auth/login', data: auth);
+      final response = await _dio.post('/auth/login',
+          options: Options(headers: {
+            'Content-Type': 'application/json',
+          }),
+          data: auth.toJson());
       if (response.statusCode == 200) {
         final dynamic data = response.data;
         return AuthResponseModel.fromJson(data);
@@ -54,7 +58,7 @@ class AuthService {
 
   Future<UserModel?> getUser(String accessToken) async {
     try {
-      final response = await _dio.get('auth/profile',
+      final response = await _dio.get('/auth/profile',
           options: Options(headers: {
             'Authorization': 'Bearer $accessToken',
             'Content-Type': 'application/json',
@@ -68,4 +72,22 @@ class AuthService {
       print(_);
     }
   }
+
+    Future<UserModel?> getUserTemp(String accessToken) async {
+    try {
+      final response = await _dio.get('/auth/current-user',
+          options: Options(headers: {
+            'Authorization': 'Bearer $accessToken',
+            'Content-Type': 'application/json',
+          }));
+      if (response.statusCode == 200) {
+        final dynamic data = response.data;
+        return UserModel.fromJson(data);
+      }
+      return null;
+    } on DioException catch (_) {
+      print(_);
+    }
+  }
+
 }

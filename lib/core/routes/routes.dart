@@ -2,11 +2,11 @@ import 'package:esperar_app_front_flutter/ux/screens.dart';
 import 'package:flutter/material.dart';
 
 routes(BuildContext context) => {
-  'splash': (context) => const SplashScreen(),
+  'splash': (context) =>  SplashScreen.init(context),
   'welcome': (context) => const WelcomeScreen(),
-  'login': (context) => const LoginScreen(),
-  'select-driver': (context) => const SelectDriverScreen(),
+  'login': (context) =>  LoginScreen.init(context),
+  'select-driver': (context) =>  SelectDriverScreen.init(context),
   'layout': (context) => LayoutScreen.init(context),
-  'new-route': (context) => const CreateRouteScreen(),
-  'edit-profile': (context) => const EditProfile(),
+  'new-route': (context) => CreateRouteScreen.init(context),
+  'edit-profile': (context) =>  EditProfile.init(context),
 };

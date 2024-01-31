@@ -1,27 +1,42 @@
 import 'package:esperar_app_front_flutter/core/const/generate_vehicle_plate.dart';
 import 'package:esperar_app_front_flutter/core/const/navigate.dart';
+import 'package:esperar_app_front_flutter/data/services/user_service.dart';
+import 'package:esperar_app_front_flutter/domain/repository/local_storage_interface.dart';
+import 'package:esperar_app_front_flutter/ux/select%20driver/select_driver_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SelectDriverScreen extends StatelessWidget {
-  const SelectDriverScreen({Key? key}) : super(key: key);
+  const SelectDriverScreen._();
+
+  static Widget init(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (context) => SelectDiverProvider(
+        localStorageInterface: Provider.of<LocalStorageInterface>(context,listen: false),
+        userService: Provider.of<UserService>(context,listen: false),
+      )..init(),
+      builder: (context, child) => const SelectDriverScreen._(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    final bloc = Provider.of<SelectDiverProvider>(context);
     const textStyle = TextStyle(fontWeight: FontWeight.bold);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          child: Column(
+          child:  bloc.getVehicle() != null ? Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
-                    "Bienvenido, DML 040",
+                   Text(
+                    "Bienvenido ${bloc.getVehicle()!.brand}",
                     style: TextStyle(fontWeight: FontWeight.w700, fontSize: 20),
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -57,6 +72,7 @@ class SelectDriverScreen extends StatelessWidget {
               Row(
                 children: [
                   Container(
+
                     height: 100,
                     width: 100,
                     decoration: BoxDecoration(
@@ -73,16 +89,16 @@ class SelectDriverScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            const PlateVehicle(
-                                plate: 'DML 040', background: Colors.yellow),
+                             PlateVehicle(
+                                plate: bloc.getVehicle()!.licensePlate, background: Colors.yellow),
                             const SizedBox(width: 20),
                             PlateVehicle(
-                                number: 238, background: Colors.grey[200]!),
+                                number: int.parse(bloc.getVehicle()!.secondaryPlate!), background: Colors.grey[200]!),
                           ],
                         ),
                         const SizedBox(height: 5),
-                        const Text(
-                          "VOLVO - BLANCA 2000",
+                         Text(
+                          "${bloc.getVehicle()!.model} - ${bloc.getVehicle()!.color} ${bloc.getVehicle()!.year}",
                           style: TextStyle(fontWeight: FontWeight.bold),
                           overflow: TextOverflow.ellipsis,
                         )
@@ -130,22 +146,25 @@ class SelectDriverScreen extends StatelessWidget {
                                   mainAxisSpacing: 10,
                                   crossAxisSpacing: 10),
                           itemBuilder: (context, index) {
-                            return Column(
-                              children: [
-                                Container(
-                                  width: 50,
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                      color: Colors.black,
-                                      shape: BoxShape.circle,
-                                      border: Border.all(color: Colors.black)),
-                                ),
-                                const Text("Nombre"),
-                                const Text("cc")
-                              ],
+                            return GestureDetector(
+                              onTap:bloc.setSelectUser,
+                              child: Column(
+                                children: [
+                                  Container(
+                                    width: 50,
+                                    height: 50,
+                                    decoration: BoxDecoration(
+                                        color: Colors.black,
+                                        shape: BoxShape.circle,
+                                        border: Border.all(color: Colors.black)),
+                                  ),
+                                   Text(bloc.users[index].firstName ?? 'Admin' , style: TextStyle(color: bloc.selectUser ? Colors.green : Colors.black , fontWeight: bloc.selectUser ? FontWeight.bold : FontWeight.normal )),
+                                   Text(bloc.users[index].documentNumber != null ? bloc.users[index].documentNumber.toString() : '1234')
+                                ],
+                              ),
                             );
                           },
-                          itemCount: 9,
+                          itemCount: bloc.users.length,
                           physics: const BouncingScrollPhysics(),
                         ),
                       )
@@ -185,7 +204,7 @@ class SelectDriverScreen extends StatelessWidget {
                 ],
               )
             ],
-          ),
+          ) : Center(child: CircularProgressIndicator(),),
         ),
       ),
     );

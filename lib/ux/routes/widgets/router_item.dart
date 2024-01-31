@@ -1,14 +1,17 @@
 
 
+import 'package:esperar_app_front_flutter/data/models/routes/route_model.dart';
 import 'package:flutter/material.dart';
 
 class RouteItem extends StatelessWidget {
   const RouteItem({
     super.key,
     required this.bottomPadding,
+    required this.route,
   });
 
   final double bottomPadding;
+  final RouteModel route;
 
   @override
   Widget build(BuildContext context) {
@@ -31,18 +34,18 @@ class RouteItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Villavicencio',
+                      route.from!,
                       style: textStyle,
                     ),
                     const Icon(Icons.arrow_forward),
                     Text(
-                      'Restrepo',
+                      route.to!,
                       style: textStyle,
                     )
                   ],
                 ),
               ),
-              const Text('Conductores en esta ruta 10')
+              const Text('Conductores en esta ruta 0')
             ],
           ),
         ),
