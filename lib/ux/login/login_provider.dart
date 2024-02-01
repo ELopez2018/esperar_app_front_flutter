@@ -35,7 +35,8 @@ class LoginProvider extends ChangeNotifier {
               userTemp.company!.id, result.accessToken);
 
           await localStorageInterface.setAccessToken(result.accessToken);
-          await localStorageInterface.setUser(user!);
+          await 
+          localStorageInterface.setUser(user!);
           //TODO: validate exist vehicle in user
           await localStorageInterface.setVehicle(userTemp.company!.vehicles!.first);
           return true;
