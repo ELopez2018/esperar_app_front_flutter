@@ -22,6 +22,8 @@ class RouteService {
         return RouteModel.fromJson(data);
       }
     } on DioException catch (_) {
+      
+      
       print(_);
     }
   }

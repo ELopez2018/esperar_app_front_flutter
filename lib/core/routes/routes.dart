@@ -9,4 +9,5 @@ routes(BuildContext context) => {
   'layout': (context) => LayoutScreen.init(context),
   'new-route': (context) => CreateRouteScreen.init(context),
   'edit-profile': (context) =>  EditProfile.init(context),
+  'create-news': (context) => CreateNewsScreen.init(context)
 };

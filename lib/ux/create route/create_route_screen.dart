@@ -11,9 +11,9 @@ class CreateRouteScreen extends StatelessWidget {
   static Widget init(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => CreateRouteProvider(
-        routeService: Provider.of(context, listen: false),
-        localStorageInterface: Provider.of<LocalStorageInterface>(context,listen: false)
-      ),
+          routeService: Provider.of(context, listen: false),
+          localStorageInterface:
+              Provider.of<LocalStorageInterface>(context, listen: false)),
       builder: (context, child) => const CreateRouteScreen._(),
     );
   }
@@ -24,7 +24,7 @@ class CreateRouteScreen extends StatelessWidget {
 
     createRoute() async {
       final result = await bloc.createRoute();
-      if(result != null){
+      if (result != null) {
         pop(context, result);
       }
     }
@@ -59,6 +59,9 @@ class CreateRouteScreen extends StatelessWidget {
                   alignment: Alignment.center,
                   child: ButtonCustom(
                     text: 'INICIAR',
+                    color: Colors.white,
+                    borderColor: Colors.transparent,
+                    background: const Color(0xFFf40d53),
                     onTap: createRoute,
                     width: 200,
                   ))

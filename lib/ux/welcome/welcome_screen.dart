@@ -1,4 +1,5 @@
 import 'package:esperar_app_front_flutter/core/const/navigate.dart';
+import 'package:esperar_app_front_flutter/ux/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatelessWidget {
@@ -6,71 +7,69 @@ class WelcomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+
     return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Transform.rotate(
-                  angle: -0.2,
-                  child: const Column(
-                    children: [
-                      Text(
-                        "Esperar",
-                        style: TextStyle(fontStyle: FontStyle.italic),
-                      ),
-                      Text(
-                        "CONDUCTORES",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, color: Colors.black),
-                      ),
-                    ],
-                  ),
-                ),
-                const Align(
-                  alignment: Alignment.centerLeft,
+      body: Stack(
+        children: [
+          Positioned.fill(
+              child: Image.asset(
+            'assets/images/splash-f.png',
+            fit: BoxFit.cover,
+            height: size.height,
+          )),
+          Positioned.fill(
+              child: Container(
+            color: Colors.black.withOpacity(0.5),
+          )),
+          Positioned.fill(
+            child: SafeArea(
+              child: Center(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 50, horizontal: 20),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text(
-                        "Podrás realizar",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20),
+                      Image.asset('assets/icons/logo.png',
+                          fit: BoxFit.cover, height: size.width * 0.3),
+                      const Align(
+                        alignment: Alignment.centerLeft,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Podrás realizar",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: Colors.white),
+                            ),
+                            SizedBox(height: 20),
+                            Text(
+                              "Ver mapas con compañeros en el camino\nEstar enterado de las noticias de tu empresa\nVer tu programación de rutas",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
                       ),
-                      SizedBox(height: 20),
-                      Text(
-                        "Ver mapas con compañeros en el camino\nEstar enterado de las noticias de tu empresa\nVer tu programación de rutas",
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ButtonCustom(
+                        text: 'Siguiente',
+                        color: Colors.white,
+                        borderColor: Colors.transparent,
+                        background: const Color(0xFFf40d53),
+                        onTap: () => pushReplacement(context, 'login', null),
                       ),
                     ],
                   ),
                 ),
-                ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 200),
-                  child: GestureDetector(
-                    onTap: () => pushReplacement(context, 'login', null),
-                    child: Container(
-                      alignment: Alignment.center,
-                      height: 45,
-                      decoration: BoxDecoration(
-                          border: Border.all(color: Colors.black),
-                          borderRadius: BorderRadius.circular(20)),
-                      child: const Padding(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 5),
-                        child: Text("Siguiente"),
-                      ),
-                    ),
-                  ),
-                )
-              ],
+              ),
             ),
           ),
-        ),
+        ],
       ),
     );
   }

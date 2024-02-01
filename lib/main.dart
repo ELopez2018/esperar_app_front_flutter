@@ -2,6 +2,7 @@ import 'package:esperar_app_front_flutter/core/routes/routes.dart';
 import 'package:esperar_app_front_flutter/data/repository/local_storage_imple.dart';
 import 'package:esperar_app_front_flutter/data/services/auth_service.dart';
 import 'package:esperar_app_front_flutter/data/services/companies_service.dart';
+import 'package:esperar_app_front_flutter/data/services/news_service.dart';
 import 'package:esperar_app_front_flutter/data/services/route_service.dart';
 import 'package:esperar_app_front_flutter/data/services/user_service.dart';
 import 'package:esperar_app_front_flutter/data/services/vehicle_service.dart';
@@ -37,6 +38,9 @@ class MyApp extends StatelessWidget {
           ),
           Provider(
             create: (context) => RouteService(),
+          ),
+          Provider(
+            create: (context) => NewsService(),
           ),
           Provider(
             create: (context) => CompanyService(),

@@ -16,7 +16,7 @@ class LayoutScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final bloc = Provider.of<LayoutProvider>(context);
-    List<Widget> pages =  [  RoutesScreen.init(context),  NewsScreen(),  MapScreen(), ChatScreen(), ProfileScreen.init(context)];
+    List<Widget> pages =  [  RoutesScreen.init(context),  NewsScreen.init(context),  MapScreen(), ChatScreen(), ProfileScreen.init(context)];
     return Scaffold(
       body: SafeArea(
         child: Stack(

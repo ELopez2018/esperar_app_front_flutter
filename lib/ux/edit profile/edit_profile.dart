@@ -92,8 +92,9 @@ class EditProfile extends StatelessWidget {
                               pop(context, null);
                             }
                           },
-                          background: Colors.green,
-                          color: Colors.white,
+                color: Colors.white,
+                borderColor: Colors.transparent,
+                background: const Color(0xFFf40d53),
                         ),
                       )
                     ],

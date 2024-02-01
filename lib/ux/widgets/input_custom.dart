@@ -10,6 +10,7 @@ class InputCustom extends StatefulWidget {
     this.controller,
     this.isPassword = false,
     this.enable = true,
+    this.maxLines,
   });
   final String label;
   final String? image;
@@ -18,6 +19,7 @@ class InputCustom extends StatefulWidget {
   final TextEditingController? controller;
   final bool? isPassword;
   final bool? enable;
+  final int? maxLines;
 
   @override
   State<InputCustom> createState() => _InputCustomState();
@@ -35,35 +37,42 @@ class _InputCustomState extends State<InputCustom> {
         children: [
           Text(widget.label),
           const SizedBox(height: 10),
-          Container(
-            height: 50,
-            decoration: BoxDecoration(border: Border.all()),
-            child: TextFormField(
-              decoration: InputDecoration(
-                  prefixIcon:
-                      widget.image != null ? Image.asset(widget.image!) : widget.icon != null ? Icon(widget.icon) : null,
-                  border: InputBorder.none,
-                  contentPadding: const EdgeInsets.symmetric(
-                    vertical: 10,
-                    horizontal: 10,
-                  ),
-                  suffixIcon: widget.isPassword!
-                      ? obscureText
-                          ? GestureDetector(
-                              onTap: () => setState(() {
-                                    obscureText = !obscureText;
-                                  }),
-                              child: Icon(Icons.visibility))
-                          : GestureDetector(
-                              onTap: () => setState(() {
-                                    obscureText = !obscureText;
-                                  }),
-                              child: Icon(Icons.visibility_off_outlined))
-                      : null),
-              cursorColor: Colors.grey,
-              controller: widget.controller,
-              obscureText: widget.isPassword! ? obscureText : false,
-              enabled: widget.enable,
+          ConstrainedBox(
+            constraints: BoxConstraints(
+              minHeight: 50,
+              maxHeight: 270,
+            ),
+            child: Container(
+              decoration: BoxDecoration(border: Border.all()),
+              child: TextFormField(
+                decoration: InputDecoration(
+                    prefixIcon:
+                        widget.image != null ? Image.asset(widget.image!) : widget.icon != null ? Icon(widget.icon ) : null,
+                    border: InputBorder.none,
+                    contentPadding: const EdgeInsets.symmetric(
+                      vertical: 10,
+                      horizontal: 10,
+                    ),
+                    suffixIcon: widget.isPassword!
+                        ? obscureText
+                            ? GestureDetector(
+                                onTap: () => setState(() {
+                                      obscureText = !obscureText;
+                                    }),
+                                child: Icon(Icons.visibility, color: Color(0xFFf40d53),))
+                            : GestureDetector(
+                                onTap: () => setState(() {
+                                      obscureText = !obscureText;
+                                    }),
+                                child: Icon(Icons.visibility_off_outlined, color: Color(0xFFf40d53),))
+                        : null),
+                cursorColor: const Color(0xFFf40d53),
+                controller: widget.controller,
+                obscureText: widget.isPassword! ? obscureText : false,
+                enabled: widget.enable,
+                minLines: widget.maxLines != null ? 1 : null,
+                maxLines: widget.maxLines ?? 1,
+              ),
             ),
           ),
         ],

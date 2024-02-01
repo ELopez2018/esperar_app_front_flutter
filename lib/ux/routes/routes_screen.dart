@@ -39,21 +39,25 @@ class _RoutesScreenState extends State<RoutesScreen> {
 
     return Column(
       children: [
-         AppBarCustom(
+        AppBarCustom(
           action: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               Text(
+              Text(
                 'HOLA',
                 style: TextStyle(fontStyle: FontStyle.italic),
               ),
               Padding(
                 padding: const EdgeInsets.only(left: 5),
-                child: bloc.user != null ? Text(
-                  bloc.user!.firstName != null ? bloc.user!.firstName!: 'Admin',
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ) : SizedBox(),
+                child: bloc.user != null
+                    ? Text(
+                        bloc.user!.firstName != null
+                            ? bloc.user!.firstName!
+                            : 'Admin',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      )
+                    : SizedBox(),
               )
             ],
           ),
@@ -68,9 +72,13 @@ class _RoutesScreenState extends State<RoutesScreen> {
               const SizedBox(height: 20),
               ButtonCustom(
                 text: 'CREAR RUTA',
-                onTap: ()async {
-                  final result = await push(context, 'new-route', null) as RouteModel?;
-                  if(result != null){
+                color: Colors.white,
+                borderColor: Colors.transparent,
+                background: const Color(0xFFf40d53),
+                onTap: () async {
+                  final result =
+                      await push(context, 'new-route', null) as RouteModel?;
+                  if (result != null) {
                     bloc.addRoute(result);
                   }
                 },
@@ -96,7 +104,6 @@ class _RoutesScreenState extends State<RoutesScreen> {
                               Expanded(
                                 child: ListView.builder(
                                   itemBuilder: (context, index) {
-                                    
                                     return RouteItem(
                                       bottomPadding: index != 9 ? 10 : 0,
                                       route: bloc.routes![index]!,
