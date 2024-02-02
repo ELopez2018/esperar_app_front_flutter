@@ -14,4 +14,5 @@ abstract class LocalStorageInterface{
   Future<VehicleModel?> getVehicle();
   Future setRoute(RouteModel route);
   Future<RouteModel?> getRoute();
+  Future clean();
 }

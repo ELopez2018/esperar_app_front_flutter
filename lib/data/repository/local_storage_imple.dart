@@ -90,4 +90,10 @@ class LocalStorageImplementation extends LocalStorageInterface {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     sharedPreferences.setString(_company, jsonEncode(company));
   }
+
+  @override
+  Future clean() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    await sharedPreferences.clear();
+  }
 }

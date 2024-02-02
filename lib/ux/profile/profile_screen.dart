@@ -57,7 +57,11 @@ class ProfileScreen extends StatelessWidget {
                   suffixWidget: Align(
                       alignment: Alignment.center,
                       child: GestureDetector(
-                        onTap: () => pushReplacement(context, 'login', null),
+                        onTap: () async  {
+                          await Provider.of
+                          <LocalStorageInterface>(context,listen: false).clean();
+                          pushReplacement(context, 'login', null);
+                        },
                         child: const Text(
                           'Cerrar sesión',
                           style: TextStyle(

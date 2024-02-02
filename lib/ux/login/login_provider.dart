@@ -1,6 +1,4 @@
 import 'package:esperar_app_front_flutter/data/models/auth/auth_request_model.dart';
-import 'package:esperar_app_front_flutter/data/models/users/user_model.dart';
-import 'package:esperar_app_front_flutter/data/models/vehicles/vehicle_model.dart';
 import 'package:esperar_app_front_flutter/data/services/auth_service.dart';
 import 'package:esperar_app_front_flutter/data/services/companies_service.dart';
 import 'package:esperar_app_front_flutter/data/services/user_service.dart';
@@ -33,13 +31,12 @@ class LoginProvider extends ChangeNotifier {
               await userService.findUserById(userTemp.id, result.accessToken);
           final company = await companyService.findCompanyById(
               userTemp.company!.id, result.accessToken);
-
-          await localStorageInterface.setAccessToken(result.accessToken);
-          await 
-          localStorageInterface.setUser(user!);
-          //TODO: validate exist vehicle in user
-          await localStorageInterface.setVehicle(userTemp.company!.vehicles!.first);
-          return true;
+          if (user != null && company != null) {
+            await localStorageInterface.setAccessToken(result.accessToken);
+            await localStorageInterface.setUser(user);
+            await localStorageInterface.setVehicle(company.vehicles!.first);
+            return true;
+          }
         }
       }
       return false;

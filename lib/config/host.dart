@@ -3,5 +3,5 @@ String get apiHost {
   if (idProd) {
     return "https://";
   }
-  return "http://192.168.0.122:8080/api/v1";
+  return "http://192.168.20.40:8080/api/v1";
 }
