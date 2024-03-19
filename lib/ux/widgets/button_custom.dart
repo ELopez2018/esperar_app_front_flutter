@@ -9,6 +9,7 @@ class ButtonCustom extends StatelessWidget {
     this.background,
     this.color,
     this.borderColor,
+    this.boxShadow,
   });
 
   final String text;
@@ -17,17 +18,18 @@ class ButtonCustom extends StatelessWidget {
   final Color? background;
   final Color? color;
   final Color? borderColor;
+  final List<BoxShadow>? boxShadow;
 
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: BoxConstraints(minWidth: 120, maxWidth: width ?? 200),
+      constraints: BoxConstraints(minWidth: width ?? 120, maxWidth: width ?? 200),
       child: GestureDetector(
         onTap: onTap,
         child: Container(
           alignment: Alignment.center,
           height: 45,
-          decoration: BoxDecoration(border: Border.all(color: borderColor ?? Colors.black), color: background),
+          decoration: BoxDecoration(border: Border.all(color: borderColor ?? Colors.black), color: background , boxShadow:boxShadow),
           child: Text(
             text,
             style: TextStyle(fontWeight: FontWeight.w600, color: color),

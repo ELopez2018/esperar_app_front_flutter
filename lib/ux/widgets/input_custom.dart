@@ -11,6 +11,9 @@ class InputCustom extends StatefulWidget {
     this.isPassword = false,
     this.enable = true,
     this.maxLines,
+    this.textInputType,
+    this.hintText,
+    this.validator,
   });
   final String label;
   final String? image;
@@ -20,6 +23,9 @@ class InputCustom extends StatefulWidget {
   final bool? isPassword;
   final bool? enable;
   final int? maxLines;
+  final TextInputType? textInputType;
+  final String? hintText;
+  final String? Function(String?)? validator;
 
   @override
   State<InputCustom> createState() => _InputCustomState();
@@ -38,41 +44,53 @@ class _InputCustomState extends State<InputCustom> {
           Text(widget.label),
           const SizedBox(height: 10),
           ConstrainedBox(
-            constraints: BoxConstraints(
+            constraints: const BoxConstraints(
               minHeight: 50,
               maxHeight: 270,
             ),
-            child: Container(
-              decoration: BoxDecoration(border: Border.all()),
-              child: TextFormField(
-                decoration: InputDecoration(
-                    prefixIcon:
-                        widget.image != null ? Image.asset(widget.image!) : widget.icon != null ? Icon(widget.icon ) : null,
-                    border: InputBorder.none,
-                    contentPadding: const EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 10,
-                    ),
-                    suffixIcon: widget.isPassword!
-                        ? obscureText
-                            ? GestureDetector(
-                                onTap: () => setState(() {
-                                      obscureText = !obscureText;
-                                    }),
-                                child: Icon(Icons.visibility, color: Color(0xFFf40d53),))
-                            : GestureDetector(
-                                onTap: () => setState(() {
-                                      obscureText = !obscureText;
-                                    }),
-                                child: Icon(Icons.visibility_off_outlined, color: Color(0xFFf40d53),))
-                        : null),
-                cursorColor: const Color(0xFFf40d53),
-                controller: widget.controller,
-                obscureText: widget.isPassword! ? obscureText : false,
-                enabled: widget.enable,
-                minLines: widget.maxLines != null ? 1 : null,
-                maxLines: widget.maxLines ?? 1,
+            child: TextFormField(
+              decoration: InputDecoration(
+                prefixIcon: widget.image != null
+                    ? Image.asset(widget.image!)
+                    : widget.icon != null
+                        ? Icon(widget.icon)
+                        : null,
+                border: const OutlineInputBorder(),
+                contentPadding: const EdgeInsets.symmetric(
+                  vertical: 10,
+                  horizontal: 10,
+                ),
+                suffixIcon: widget.isPassword!
+                    ? obscureText
+                        ? GestureDetector(
+                            onTap: () => setState(() {
+                                  obscureText = !obscureText;
+                                }),
+                            child: const Icon(
+                              Icons.visibility,
+                              color: Color(0xFFf40d53),
+                            ))
+                        : GestureDetector(
+                            onTap: () => setState(() {
+                                  obscureText = !obscureText;
+                                }),
+                            child: const Icon(
+                              Icons.visibility_off_outlined,
+                              color: Color(0xFFf40d53),
+                            ),)
+                    : null,
+                    hintText: widget.hintText,
+                    
               ),
+              cursorColor: const Color(0xFFf40d53),
+              controller: widget.controller,
+              obscureText: widget.isPassword! ? obscureText : false,
+              enabled: widget.enable,
+              minLines: widget.maxLines != null ? 1 : null,
+              maxLines: widget.maxLines ?? 1,
+              keyboardType: widget.textInputType,
+              validator: widget.validator,
+              autovalidateMode: AutovalidateMode.onUserInteraction,
             ),
           ),
         ],

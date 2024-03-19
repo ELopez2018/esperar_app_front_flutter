@@ -8,13 +8,13 @@ class NewsModel {
     required this.id,
     required this.title,
     required this.content,
-    required this.createdAt,
+   // required this.createdAt,
   });
 
   final int id;
   final String title;
   final String content;
-  final DateTime createdAt;
+  //final DateTime createdAt;
 
 
   factory NewsModel.fromJson(Map<String, dynamic> json) =>

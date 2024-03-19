@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 const _accessToken = 'accessToken';
 const _user = 'user';
+const _rol = 'rol';
 const _company = 'company';
 const _vehicle = 'vehicle';
 const _route = 'route';
@@ -26,7 +27,7 @@ class LocalStorageImplementation extends LocalStorageInterface {
 
     final routeJson = sharedPreferences.getString(_route);
     if (routeJson != null) {
-      return RouteModel.fromJson(jsonDecode(routeJson));
+      return RouteModel.fromJson(jsonDecode(routeJson) as Map<String, dynamic>);
     }
     return null;
   }

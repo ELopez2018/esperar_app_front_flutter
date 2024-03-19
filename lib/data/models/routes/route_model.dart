@@ -27,4 +27,5 @@ class RouteModel {
   factory RouteModel.fromJson(Map<String, dynamic> json) =>
       _$RouteModelFromJson(json);
   Map<String, dynamic> toJson() => _$RouteModelToJson(this);
+  
 }

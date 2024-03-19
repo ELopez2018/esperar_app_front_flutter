@@ -1,0 +1,10 @@
+export 'package:esperar_app_front_flutter/data/services/auth_service.dart';
+export 'package:esperar_app_front_flutter/data/services/chat_service.dart';
+export 'package:esperar_app_front_flutter/data/services/companies_service.dart';
+export 'package:esperar_app_front_flutter/data/services/coodinate_model.dart';
+export 'package:esperar_app_front_flutter/data/services/news_service.dart';
+export 'package:esperar_app_front_flutter/data/services/route_service.dart';
+export 'package:esperar_app_front_flutter/data/services/socket_service.dart';
+export 'package:esperar_app_front_flutter/data/services/trafic_service.dart';
+export 'package:esperar_app_front_flutter/data/services/user_service.dart';
+export 'package:esperar_app_front_flutter/data/services/vehicle_service.dart';
