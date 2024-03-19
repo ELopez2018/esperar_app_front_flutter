@@ -2,7 +2,9 @@
     <application
         android:label="esperar_app_front_flutter"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true"
+        >
          <meta-data android:name="com.google.android.geo.API_KEY"
                android:value="AIzaSyB2_BiB9mTC1x3vvTggMy7eyjJIfRS9lR8"/>
         <activity

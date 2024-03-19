@@ -7,12 +7,10 @@ class CoordinatesRequestModel {
   CoordinatesRequestModel({
     required this.latitude,
     required this.longitude,
-    required this.routeId,
   });
 
   final String latitude;
   final String longitude;
-  final int routeId;
 
   factory CoordinatesRequestModel.fromJson(Map<String, dynamic> json) =>
       _$CoordinatesRequestModelFromJson(json);

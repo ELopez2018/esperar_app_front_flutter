@@ -8,6 +8,7 @@ class VehicleModel {
   VehicleModel({
     required this.id,
     required this.licensePlate,
+    required this.secondaryPlate,
     required this.model,
     required this.brand,
     required this.year,
@@ -15,21 +16,20 @@ class VehicleModel {
     required this.cylinderCapacity,
     required this.capacity,
     required this.occupancy,
-    required this.owner,
     required this.driver,
   });
 
-  final int id;
-  final String licensePlate;
-  final String model;
-  final String brand;
-  final int year;
-  final String color;
-  final double cylinderCapacity;
-  final int capacity;
-  final int occupancy;
-  final UserModel owner;
-  final UserModel driver;
+  final int id; 
+  final String? licensePlate;
+  final String? secondaryPlate;
+  final String? model;
+  final String? brand;
+  final int? year;
+  final String? color;
+  final double? cylinderCapacity;
+  final int? capacity;
+  final int? occupancy;
+  final UserModel? driver;
 
   factory VehicleModel.fromJson(Map<String, dynamic> json) =>
       _$VehicleModelFromJson(json);

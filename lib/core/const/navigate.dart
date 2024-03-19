@@ -5,15 +5,39 @@ push(BuildContext context, String route, dynamic args) async {
 }
 
 pushReplacement(BuildContext context, String route, dynamic args) async {
-  return  await Navigator.of(context).pushReplacementNamed(route, arguments: args);
+  return await Navigator.of(context)
+      .pushReplacementNamed(route, arguments: args);
 }
 
-pop(BuildContext context, bool? state) async {
-  return  Navigator.of(context).pop(state);
+pop(BuildContext context, dynamic state) async {
+  return Navigator.of(context).pop(state);
 }
+
 popUntil(BuildContext context, String route) async {
   return Navigator.of(context).popUntil(ModalRoute.withName(route));
 }
+
 pushNamedAndRemoveUntil(BuildContext context, String route) async {
   return Navigator.of(context).pushNamedAndRemoveUntil(route, (route) => false);
+}
+
+pushPage(BuildContext context, Widget page) {
+  return Navigator.of(context).push(MaterialPageRoute(
+    builder: (context) => page,
+  ));
+}
+
+loginRol(BuildContext context, String? rol) {
+  switch (rol) {
+    case 'ADMINISTRATOR':
+      pushReplacement(context, 'layout-company', null);
+      break;
+      case 'DRIVER':
+      pushReplacement(context, 'layout', null);
+      break;
+    case '':
+      pushReplacement(context, 'welcome', null);
+    default:
+      pushReplacement(context, 'welcome', null);
+  }
 }

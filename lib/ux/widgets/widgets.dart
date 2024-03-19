@@ -1,4 +1,9 @@
+export 'package:esperar_app_front_flutter/ux/widgets/indicator_route.dart';
+export 'package:esperar_app_front_flutter/ux/widgets/pop%20ups/pop_ups.dart';
+export 'package:esperar_app_front_flutter/ux/widgets/circular_progress_custom.dart';
+export 'package:esperar_app_front_flutter/ux/widgets/date_picker.dart';
+export 'package:esperar_app_front_flutter/ux/widgets/recover%20password/generate%20code/generate_code.dart';
 export 'package:esperar_app_front_flutter/ux/widgets/input_custom.dart';
 export 'package:esperar_app_front_flutter/ux/widgets/app_bar_custom.dart';
-export 'package:esperar_app_front_flutter/ux/splash/button_custom.dart';
+export 'package:esperar_app_front_flutter/ux/widgets/button_custom.dart';
 export 'package:esperar_app_front_flutter/ux/widgets/button_back_screen.dart';

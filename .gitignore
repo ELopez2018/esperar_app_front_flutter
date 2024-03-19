@@ -44,4 +44,4 @@ app.*.map.json
 
 # fvm
 .fvm/flutter_sdk
-lib/models/**/**/*.g.dart
+/lib/data/models/**/**/*.g.dart

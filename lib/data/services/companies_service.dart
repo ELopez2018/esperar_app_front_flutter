@@ -1,17 +1,32 @@
 import 'package:dio/dio.dart';
 import 'package:esperar_app_front_flutter/config/host.dart';
+import 'package:esperar_app_front_flutter/core/interceptors/refresh_token.dart';
 import 'package:esperar_app_front_flutter/data/models/companies/companies_response_model.dart';
 import 'package:esperar_app_front_flutter/data/models/companies/company_model.dart';
 import 'package:esperar_app_front_flutter/data/models/companies/company_request_model.dart';
+import 'package:esperar_app_front_flutter/domain/repository/local_storage_interface.dart';
 
-class CompaniesService{
-  late final Dio _dio = Dio(BaseOptions(baseUrl: apiHost));
+class CompanyService {
+  CompanyService({required this.localStorageInterface});
 
+  final LocalStorageInterface localStorageInterface;
+  
+  late final Dio _dio = Dio(BaseOptions(baseUrl: apiHost))
+    ..interceptors.add(
+      ValidateTokenInterceptor(
+        localStorageInterface: localStorageInterface,
+      ),
+    );
 
-
- Future<CompanyModel?> createCompany(CompanyRequestModel company) async {
+  Future<CompanyModel?> createCompany(
+      String accessToken, CompanyRequestModel company) async {
     try {
-      final response = await _dio.post('/companies', data: company);
+      final response = await _dio.post('/companies',
+          options: Options(headers: {
+            'Authorization': 'Bearer $accessToken',
+            'Content-Type': 'application/json',
+          }),
+          data: company.toJson());
       if (response.statusCode == 200) {
         final dynamic data = response.data;
         return CompanyModel.fromJson(data);
@@ -37,7 +52,7 @@ class CompaniesService{
     }
   }
 
-  Future<CompanyModel?> findCompanyById(int id, String accessToken) async {
+  Future<int?> findCompanyById(int id, String accessToken) async {
     try {
       final response = await _dio.get('/companies/$id',
           options: Options(headers: {
@@ -45,8 +60,8 @@ class CompaniesService{
             'Content-Type': 'application/json',
           }));
       if (response.statusCode == 200) {
-        final dynamic data = response.data;
-        return CompanyModel.fromJson(data);
+        final List<dynamic> data = response.data['vehiclesIds'];
+        return data[0] as int;
       }
     } on DioException catch (_) {
       print(_);
@@ -78,10 +93,10 @@ class CompaniesService{
             'Authorization': 'Bearer $accessToken',
             'Content-Type': 'application/json',
           }));
-          if(response.statusCode == 204){
-            return true;
-          }
-          return false;
+      if (response.statusCode == 204) {
+        return true;
+      }
+      return false;
     } on DioException catch (_) {
       print(_);
     }

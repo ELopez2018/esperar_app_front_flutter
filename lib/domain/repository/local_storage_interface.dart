@@ -1,3 +1,4 @@
+import 'package:esperar_app_front_flutter/data/models/companies/company_model.dart';
 import 'package:esperar_app_front_flutter/data/models/routes/route_model.dart';
 import 'package:esperar_app_front_flutter/data/models/users/user_model.dart';
 import 'package:esperar_app_front_flutter/data/models/vehicles/vehicle_model.dart';
@@ -7,8 +8,11 @@ abstract class LocalStorageInterface{
   Future<String?> getAccessToken();
   Future setUser(UserModel user);
   Future<UserModel?> getUser();
+  Future setCompany(CompanyModel company);
+  Future<CompanyModel?> getCompany();
   Future setVehicle(VehicleModel vehicle);
   Future<VehicleModel?> getVehicle();
   Future setRoute(RouteModel route);
   Future<RouteModel?> getRoute();
+  Future clean();
 }

@@ -16,12 +16,12 @@ class CompanyModel {
   });
 
   final int id;
-  final String name;
-  final String address;
-  final int phoneNumber;
-  final String email;
-  final String website;
-  final List<VehicleModel> vehicles;
+  final String? name;
+  final String? address;
+  final String? phoneNumber;
+  final String? email;
+  final String? website;
+  final List<VehicleModel>? vehicles;
 
   factory CompanyModel.fromJson(Map<String, dynamic> json) =>
       _$CompanyModelFromJson(json);

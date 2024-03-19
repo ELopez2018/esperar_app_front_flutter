@@ -11,8 +11,8 @@ class RoutesResponseModel {
     required this.pageable,
   });
 
-  final List<RouteModel> content;
-  final PageableModel pageable;
+  final List<RouteModel?> content;
+  final PageableModel? pageable;
 
   factory RoutesResponseModel.fromJson(Map<String, dynamic> json) =>
       _$RoutesResponseModelFromJson(json);

@@ -13,8 +13,8 @@ class VehicleRequestModel {
     required this.cylinderCapacity,
     required this.capacity,
     required this.occupancy,
-    required this.ownerId,
     required this.driverId,
+    required this.companyId,
   });
 
   final String licensePlate;
@@ -25,8 +25,8 @@ class VehicleRequestModel {
   final double cylinderCapacity;
   final int capacity;
   final int occupancy;
-  final int ownerId;
   final int driverId;
+  final int companyId;
 
   factory VehicleRequestModel.fromJson(Map<String, dynamic> json) =>
       _$VehicleRequestModelFromJson(json);

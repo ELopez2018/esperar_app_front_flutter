@@ -17,7 +17,7 @@ class AppBarCustom extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.end,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Align(
                 alignment: Alignment.center, child: action ?? const SizedBox()),
@@ -29,14 +29,9 @@ class AppBarCustom extends StatelessWidget {
                       Container(
                         width: 35,
                         height: 35,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(color: Colors.black)),
+                            child: Image.asset('assets/icons/logo.png'),
                       ),
-                      const Text(
-                        'LOGO APP',
-                        style: TextStyle(fontSize: 12),
-                      ),
+    
                     ],
                   )
                 
